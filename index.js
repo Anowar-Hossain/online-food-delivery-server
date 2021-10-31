@@ -46,6 +46,23 @@ async function run (){
     res.json(result);
     })
 
+    //get order data
+    app.get('/orders', async(req, res)=> {
+        const cursor = orderCollection.find({});
+        const orders = await cursor.toArray();
+        res.send(orders);
+    })
+
+    //delete order
+    app.delete('/deleteorder/:id', async
+        const id = req.params.id;
+        const quary = {_id: objectId(id)};
+        const result = await orderCollection.deleteOne(quary);
+        res.send(result);
+
+    });
+
+
     
 
 
