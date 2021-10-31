@@ -21,6 +21,7 @@ async function run (){
         console.log('connect to database');
         const database = client.db("delivery_food");
         const allService = database.collection("services");
+        const orderCollection = database.collection('orders');
         
 
     //getapi
@@ -37,7 +38,15 @@ async function run (){
         const service = await allService.findOne(query);
         res.send(service);
     })
-     
+
+     //order api add
+     app.post('/orders', async (req, res)=> {
+     const order = req.body;
+     const result = await orderCollection.insertOne(order);
+    res.json(result);
+    })
+
+    
 
 
         
